@@ -3,6 +3,7 @@
 <head>
     @include('layouts.admin_partials.header')
 </head>
+
 <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
     <div class="app-wrapper">
 
