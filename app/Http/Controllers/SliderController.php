@@ -2,31 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-
-
-class NewsController extends Controller
+class SliderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $newsList = News::latest()->paginate(10);
+        $sliders = Slider::latest()->paginate(10);
 
         return view(
-            'admin.pages.news.index',
+            'admin.pages.slider.index',
             [
-                'newsList' => $newsList,
+                'sliders' => $sliders,
                 'breadcrumbs' => [
                     ['name' => 'Home', 'url' => '/admin'],
-                    ['name' => 'News', 'url' => null],
+                    ['name' => 'Sliders ', 'url' => null],
                 ],
-                'currentPage' => 'Create News',
+                'currentPage' => 'Sliders',
             ],
         );
     }
@@ -36,13 +31,13 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.news.create', [
+        return view('admin.pages.slider.create', [
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
-                ['name' => 'News', 'url' => route('news.index')],
+                ['name' => 'Slider', 'url' => route('slider.index')],
                 ['name' => 'Create', 'url' => null]
             ],
-            'currentPage' => 'Create News',
+            'currentPage' => 'Create Slider',
         ], );
     }
 
@@ -66,54 +61,54 @@ class NewsController extends Controller
         // Handle image upload
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('news_images', 'public');
+            $imagePath = $request->file('image')->store('slider_images', 'public');
         }
-        News::create([
+        Slider::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $imagePath,
         ]);
         // Redirect to news index with success message
-        return redirect()->route('news.index')
-            ->with('success', 'News created successfully.');
+        return redirect()->route('slider.index')
+            ->with('success', 'Slider created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(News $news)
+    public function show(Slider $slider)
     {
-        return view('admin.pages.news.show', [
-            'news' => $news,
+        return view('admin.pages.slider.show', [
+            'slider' => $slider,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
-                ['name' => 'News', 'url' => route('news.index')],
+                ['name' => 'Slider', 'url' => route('slider.index')],
                 ['name' => 'View', 'url' => null]
             ],
-            'currentPage' => 'View News',
+            'currentPage' => 'View Slider',
         ], );
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(News $news)
+    public function edit(Slider $slider)
     {
-        return view('admin.pages.news.edit', [
-            'news' => $news,
+        return view('admin.pages.slider.edit', [
+            'slider' => $slider,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
-                ['name' => 'News', 'url' => route('news.index')],
+                ['name' => 'Slider', 'url' => route('slider.index')],
                 ['name' => 'Edit', 'url' => null]
             ],
-            'currentPage' => 'Edit News',
+            'currentPage' => 'Edit Slider',
         ], );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Slider $slider)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -122,40 +117,40 @@ class NewsController extends Controller
         ]);
 
         // Handle image upload
-        $imagePath = $news->image; // default to existing image
+        $imagePath = $slider->image; // default to existing image
         if ($request->hasFile('image')) {
 
             // Delete old image if exists
-            if ($news->image && Storage::disk('public')->exists($news->image)) {
-                Storage::disk('public')->delete($news->image);
+            if ($slider->image && Storage::disk('public')->exists($slider->image)) {
+                Storage::disk('public')->delete($slider->image);
             }
 
             // Store new image
-            $imagePath = $request->file('image')->store('news_images', 'public');
+            $imagePath = $request->file('image')->store('slider_images', 'public');
         }
 
-        // Update news
-        $news->update([
+        // Update slider
+        $slider->update([
             'title' => $request->title,
             'description' => $request->description,
             'image' => $imagePath,
         ]);
 
-        return redirect()->route('news.show', $news->id)->with('success', 'News updated successfully.');
+        return redirect()->route('slider.show', $slider->id)->with('success', 'Slider updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(News $news)
+    public function destroy(Slider $slider)
     {
-        $news->delete();
+        $slider->delete();
 
         // Optionally, delete the image file if it exists
-        if ($news->image) {
-            Storage::disk('public')->delete($news->image);
+        if ($slider->image) {
+            Storage::disk('public')->delete($slider->image);
         }
 
-        return redirect()->route('news.index')->with('success', 'News deleted successfully.');
+        return redirect()->route('slider.index')->with('success', 'Slider deleted successfully.');
     }
 }

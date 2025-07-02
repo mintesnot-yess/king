@@ -12,7 +12,7 @@ class HeroController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -20,7 +20,7 @@ class HeroController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
