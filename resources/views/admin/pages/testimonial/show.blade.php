@@ -52,5 +52,5 @@
         </div>
     </div>
 </main>
-
+@include('admin.components.alert')
 @endsection

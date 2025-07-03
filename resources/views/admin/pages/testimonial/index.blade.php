@@ -26,7 +26,7 @@
 
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body overflow-auto">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -119,4 +119,5 @@
         </div>
     </div>
 </main>
+@include('admin.components.alert')
 @endsection

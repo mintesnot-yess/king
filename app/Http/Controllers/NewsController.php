@@ -75,7 +75,8 @@ class NewsController extends Controller
         ]);
         // Redirect to news index with success message
         return redirect()->route('news.index')
-            ->with('success', 'News created successfully.');
+            ->with('success', 'News created successfully!');
+
     }
 
     /**

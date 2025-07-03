@@ -10,34 +10,25 @@
             </li>
 
         </ul>
-        <!--end::Start Navbar Links-->
-        <!--begin::End Navbar Links-->
+
         <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
 
-
-
-            <!--end::Notifications Dropdown Menu-->
-            <!--begin::Fullscreen Toggle-->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                     <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
                     <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i>
                 </a>
-            </li>
-            <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
+            </li> --}}
+
             <li class="nav-item dropdown user-menu">
-                <a href="#"
-                    class="nav-link d-flex justify-content-center align-items-center gap-1  dropdown-toggle"
+                <a href="#" class="nav-link d-flex justify-content-center align-items-center gap-1  dropdown-toggle"
                     data-bs-toggle="dropdown">
-                    <div class="avatar"
-                        style="
+                    <div class="avatar" style="
                     width: 40px;
                     height: 40px;
                     border-radius: 50%;
-                    background-color: #{{ substr(md5(Auth::id()), 0, 6) }};
-                    color: white;
+                    background-color: #007bff;
+                      color: white;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -55,8 +46,8 @@
                         <div class="d-flex flex-column align-items-center">
                             <div class="avatar-circle mb-2"
                                 style="width: 70px; height: 70px; background-color: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <span
-                                    class="text-white fs-4 fw-bold">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</span>
+                                <span class="text-white fs-4 fw-bold">{{ strtoupper(substr(Auth::user()->name, 0, 1))
+                                    }}</span>
                             </div>
                             <h5 class="mb-1 text-white">{{ Auth::user()->name }}</h5>
                         </div>
@@ -64,7 +55,7 @@
 
                     <!-- Footer Section -->
                     <li class="user-footer d-flex justify-content-between p-3 bg-light">
-                        <a href="#" class="btn btn-default btn-flat btn-sm px-3">
+                        <a href="{{route('profile.index')}}" class="btn btn-default btn-flat btn-sm px-3">
                             <i class="fas fa-user me-1"></i> Profile
                         </a>
                         <form method="POST" action="{{ route('logout') }}">

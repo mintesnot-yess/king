@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'News | Kings Admin')
+@section('title', 'Slider | Kings Admin')
 @section('content')
 
 <main class="app-main">
@@ -17,54 +17,40 @@
                     <div class="card">
                         <div class="card-header  ">
 
-                            <h3 class="card-title">News</h3>
                             {{-- add --}}
                             <div class="card-tools">
-                                <a href="{{route('news.create')}}" class="btn btn-primary">
+                                <a href="{{route('brand.create')}}" class="btn btn-primary">
                                     <i class="fas fa-plus me-2"></i> Create New </a>
 
                             </div>
 
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body overflow-auto">
-                            <table class="table table-bordered ">
+                        <div class="card-body">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
-                                        <th>Title</th>
-                                        <th>Description</th>
                                         <th>Image</th>
                                         <th style="width: 120px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($newsList as $index => $news)
-                                    <tr class="align-middle text-nowrap">
+                                    @forelse ($brands as $index => $brand)
+                                    <tr class="align-middle">
                                         <td>{{ $index + 1 }}.</td>
-                                        <td>
-                                            <a href="{{ route('news.show', $news->id) }}">{{ $news->title }}</a>
-                                        </td>
-                                        <td>
-                                            <p
-                                                style="width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                                @php
 
-                                                $description = Str::limit(strip_tags($news->description), 50);
-                                                @endphp
 
-                                                <span title="{{ strip_tags($news->description) }}">{{ $description
-                                                    }}</span>
-                                            </p>
-                                        </td>
                                         <td>
 
-                                            @if ($news->image)
-                                            <img src="{{ asset('storage/' . $news->image) }}" alt="Image" width="60"
-                                                class="img-thumbnail">
-                                            @else
-                                            <span class="text-muted">No Image</span>
-                                            @endif
+                                            <a href="{{route('brand.show',$brand->id)}}">
+
+
+                                                <img src="{{ asset('storage/' . $brand->image) }}" alt="Image"
+                                                    width="100" class="img-thumbnail">
+
+                                            </a>
+
                                         </td>
                                         <td>
                                             <div class="dropdown text-center">
@@ -79,14 +65,14 @@
                                                 </button>
 
                                                 <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                                    <li>
+                                                    {{-- <li>
                                                         <a class="dropdown-item d-flex align-items-center"
-                                                            href="{{ route('news.edit', $news->id) }}">
+                                                            href="{{ route('brand.edit', $brand->id) }}">
                                                             <i class="fas fa-edit me-2"></i> Edit
                                                         </a>
-                                                    </li>
+                                                    </li> --}}
                                                     <li>
-                                                        <form action="{{ route('news.destroy', $news->id) }}"
+                                                        <form action="{{ route('brand.destroy', $brand->id) }}"
                                                             method="POST" onsubmit="return confirm('Are you sure?');">
                                                             @csrf
                                                             @method('DELETE')
@@ -103,7 +89,7 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">No news found.</td>
+                                        <td colspan="5" class="text-center">No Brands found.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>

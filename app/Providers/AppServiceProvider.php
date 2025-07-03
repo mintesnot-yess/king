@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,14 +12,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
+
 
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-        //
+        $this->register();
+
+        Gate::define('super_admin', function ($user) {
+            return $user->role === 'super_admin'; // If using a simple role field
+
+        });
     }
 }

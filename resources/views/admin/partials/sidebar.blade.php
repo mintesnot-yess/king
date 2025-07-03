@@ -36,7 +36,7 @@
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}"
                         class="nav-link {{request()->is('admin/testimonial') ? 'active' : ''}}">
-                        <i class="nav-icon  fa fa-user"></i>
+                        <i class="nav-icon  fa fa-users-line"></i>
                         <p>Clients Testimonial</p>
                     </a>
                 </li>
@@ -47,9 +47,16 @@
                         <p>Sliders</p>
                     </a>
                 </li>
-
-
                 <li class="nav-item">
+                    <a href="{{ route('brand.index') }}"
+                        class="nav-link {{request()->is('admin/brand') ? 'active' : ''}}">
+                        <i class="nav-icon  fa fa-bandage"></i>
+                        <p>Brands</p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item d-none">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-box-seam-fill"></i>
                         <p>Widgets <i class="nav-arrow bi bi-chevron-right"></i></p>

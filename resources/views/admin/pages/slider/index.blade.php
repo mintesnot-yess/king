@@ -26,7 +26,7 @@
 
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body overflow-auto">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -39,7 +39,7 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($sliders as $index => $slider)
-                                    <tr class="align-middle">
+                                    <tr class="align-middle text-nowrap">
                                         <td>{{ $index + 1 }}.</td>
                                         <td>
                                             <a href="{{ route('slider.show', $slider->id) }}">{{
@@ -118,4 +118,5 @@
         </div>
     </div>
 </main>
+@include('admin.components.alert')
 @endsection

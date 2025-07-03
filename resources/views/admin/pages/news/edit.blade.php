@@ -7,7 +7,7 @@
 
     @include('admin.partials.bordercrumb')
 
-    <div class="app-content">
+    <div style="max-width: 90% ;margin:20px auto" class="app-content">
         <div class="container-fluid">
 
             <div class="card card-primary card-outline mb-4">

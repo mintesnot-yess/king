@@ -3,16 +3,19 @@
 @section('title', 'King Steel Security Door Manufacturing')
 
 @section('content')
+@include('frontend.components.preload');
 <!-- Hero Section Start -->
 <div class="hero hero-slider-layout">
     <div class="swiper">
         <div class="swiper-wrapper">
+
             <!-- Hero Slide Start -->
+            @foreach ($sliders as $slider)
             <div class="swiper-slide">
                 <div class="hero-slide">
                     <!-- Slider Image Start -->
                     <div class="hero-slider-image">
-                        <img src="images/hero-bg.jpg" alt="">
+                        <img src="{{ asset('storage/' . $slider->image) }}" alt="">
                     </div>
                     <!-- Slider Image End -->
 
@@ -24,16 +27,14 @@
                                     <!-- Section Title Start -->
                                     <div class="section-title dark-section">
                                         <h3 class="wow fadeInUp">Durable. Stylish. Secure.</h3>
-                                        <h1 class="text-anime-style-3" data-cursor="-opaque">Secure Your Space</h1>
-                                        <p class="wow fadeInUp" data-wow-delay="0.2s">Whether for homes, offices, or
-                                            warehouses, our doors offer the perfect blend of strength, reliability, and
-                                            modern design.</p>
+                                        <h1 class="text-anime-style-3" data-cursor="-opaque">{{ $slider->title }}</h1>
+                                        <p class="wow fadeInUp" data-wow-delay="0.2s">{{$slider->description}}</p>
                                     </div>
                                     <!-- Section Title End -->
 
                                     <!-- Hero Buttons Start -->
                                     <div class="hero-btn wow fadeInUp" data-wow-delay="0.4s">
-                                        <a href="#" class="btn-default">get a quote</a>
+                                        <a href="{{$slider->link}}" class="btn-default">get a quote</a>
                                         <a href="#" class="btn-default btn-highlighted">learn more</a>
                                     </div>
                                     <!-- Hero Buttons End -->
@@ -45,47 +46,9 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+
             <!-- Hero Slide End -->
-
-            <!-- Hero Slide Start -->
-            <div class="swiper-slide">
-                <div class="hero-slide">
-                    <!-- Slider Image Start -->
-                    <div class="hero-slider-image">
-                        <img src="images/hero-bg-2.jpg" alt="">
-                    </div>
-                    <!-- Slider Image End -->
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <!-- Hero Content Start -->
-                                <div class="hero-content">
-                                    <!-- Section Title Start -->
-                                    <div class="section-title dark-section">
-                                        <h3 class="wow fadeInUp">Durable. Stylish. Secure.</h3>
-                                        <h1 class="text-anime-style-3" data-cursor="-opaque">Power in Every Panel</h1>
-                                        <p class="wow fadeInUp" data-wow-delay="0.2s">Every steel door we produce is
-                                            crafted with precision, premium materials, and a commitment to lasting
-                                            value.</p>
-                                    </div>
-                                    <!-- Section Title End -->
-
-                                    <!-- Hero Buttons Start -->
-                                    <div class="hero-btn wow fadeInUp" data-wow-delay="0.4s">
-                                        <a href="#" class="btn-default">get a quote</a>
-                                        <a href="#" class="btn-default btn-highlighted">learn more</a>
-                                    </div>
-                                    <!-- Hero Buttons End -->
-                                </div>
-                                <!-- Hero Content End -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Hero Slide End -->
-
 
         </div>
         <div class="hero-pagination"></div>
@@ -246,9 +209,8 @@
         </div>
     </div>
 </div>
-<!-- About Us Section End -->
 
-<!-- Our Service Section Start -->
+<!-- Our Service Section   -->
 <div class="our-services">
     <div class="container">
         <div class="row section-row align-items-center">
@@ -363,8 +325,7 @@
         </div>
     </div>
 </div>
-<!-- Our Service Section End -->
-<!-- Our Work Section Start -->
+<!-- Our Work Section   -->
 <div class="our-work">
     <div class="container">
         <div class="row align-items-center">
@@ -494,9 +455,9 @@
         </div>
     </div>
 </div>
-<!-- Our Work Section End -->
+<!-- Our Work Section   -->
 
-<!-- Intro Video Section Start -->
+<!-- Intro Video Section   -->
 <div class="intro-video">
     <div class="container-fluid">
         <div class="row">
@@ -526,8 +487,8 @@
         </div>
     </div>
 </div>
-<!-- Intro Video Section End -->
-<!-- Work Gallery Section Start -->
+<!-- Work Gallery Section   -->
+@if ($brands->count() > 0)
 <div class="work-gallery">
     <div class="container">
 
@@ -538,68 +499,36 @@
                     <h3>We work with the best brands</h3>
                 </div>
 
+
                 <!-- How We Work Company Slider Start -->
                 <div class="work-with-company-slider">
                     <div class="swiper">
                         <div class="swiper-wrapper">
-                            <!-- Company Support Logo Start -->
-                            <div class="swiper-slide">
-                                <div class="company-logo">
-                                    <img src="images/company-logo-1.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- Company Support Logo End -->
+                            @foreach ($brands as $brand )
 
                             <!-- Company Support Logo Start -->
                             <div class="swiper-slide">
                                 <div class="company-logo">
-                                    <img src="images/company-logo-2.svg" alt="">
+                                    <img src="{{asset('storage/' . $brand->image) }}" alt="">
                                 </div>
                             </div>
-                            <!-- Company Support Logo End -->
+                            @endforeach
 
-                            <!-- Company Support Logo Start -->
-                            <div class="swiper-slide">
-                                <div class="company-logo">
-                                    <img src="images/company-logo-3.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- Company Support Logo End -->
-
-                            <!-- Company Support Logo Start -->
-                            <div class="swiper-slide">
-                                <div class="company-logo">
-                                    <img src="images/company-logo-4.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- Company Support Logo End -->
-
-                            <!-- Company Support Logo Start -->
-                            <div class="swiper-slide">
-                                <div class="company-logo">
-                                    <img src="images/company-logo-5.svg" alt="">
-                                </div>
-                            </div>
-                            <!-- Company Support Logo End -->
-
-                            <!-- Company Support Logo Start -->
-                            <div class="swiper-slide">
-                                <div class="company-logo">
-                                    <img src="images/company-logo-1.svg" alt="">
-                                </div>
-                            </div>
                             <!-- Company Support Logo End -->
                         </div>
                     </div>
                 </div>
+
                 <!-- How We Work Company Slider End -->
             </div>
             <!-- We Work Client Slider End -->
         </div>
     </div>
 </div>
-<!-- Work Gallery Section End -->
-<!-- Our Client Testimonial Start -->
+@endif
+
+<!-- Our Client Testimonial   -->
+@if ($testimonials->count() > 0)
 <div class="our-testimonial parallaxie">
     <div class="container">
         <div class="row section-row align-items-center">
@@ -631,6 +560,8 @@
                     <div class="swiper">
                         <div class="swiper-wrapper" data-cursor-text="Drag">
                             <!-- Testimonial Slide Start -->
+
+                            @foreach ($testimonials as $testimonial)
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
                                     <div class="testimonial-header">
@@ -648,126 +579,28 @@
                                         </div>
                                     </div>
                                     <div class="testimonial-content">
-                                        <p>Exceptional quality and outstanding service! The team guided us through every
-                                            step, and our new windows look amazing.</p>
+                                        <p>
+                                            {!! $testimonial->text !!}
+                                        </p>
                                     </div>
                                     <div class="testimonial-author">
                                         <div class="author-image">
                                             <figure class="image-anime">
-                                                <img src="images/author-1.jpg" alt="">
+                                                <img src="{{ asset('storage/' . $testimonial->image) }}" alt="">
                                             </figure>
                                         </div>
                                         <div class="author-content">
-                                            <h3>arlene mcCoy</h3>
+                                            <h3>{{$testimonial->name}}</h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            @endforeach
                             <!-- Testimonial Slide End -->
 
                             <!-- Testimonial Slide Start -->
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-quote-img">
-                                            <figure>
-                                                <img src="images/quote-img.svg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="testimonial-rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p>Exceptional quality and outstanding service! The team guided us through every
-                                            step, and our new windows look amazing.</p>
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-2.jpg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="author-content">
-                                            <h3>david lee</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Slide End -->
 
-                            <!-- Testimonial Slide Start -->
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-quote-img">
-                                            <figure>
-                                                <img src="images/quote-img.svg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="testimonial-rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p>Exceptional quality and outstanding service! The team guided us through every
-                                            step, and our new windows look amazing.</p>
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-3.jpg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="author-content">
-                                            <h3>tom marsh</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Slide End -->
-
-                            <!-- Testimonial Slide Start -->
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="testimonial-header">
-                                        <div class="testimonial-quote-img">
-                                            <figure>
-                                                <img src="images/quote-img.svg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="testimonial-rating">
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <p>Exceptional quality and outstanding service! The team guided us through every
-                                            step, and our new windows look amazing.</p>
-                                    </div>
-                                    <div class="testimonial-author">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-4.jpg" alt="">
-                                            </figure>
-                                        </div>
-                                        <div class="author-content">
-                                            <h3>nai jex</h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- Testimonial Slide End -->
                         </div>
                         <div class="swiper-pagination"></div>
@@ -778,8 +611,9 @@
         </div>
     </div>
 </div>
-<!-- Our Client Testimonial End -->
-<!-- Our Faqs Section Start -->
+@endif
+
+<!-- Our Faqs Section   -->
 <div class="our-faqs">
     <div class="container">
         <div class="row align-items-center">
@@ -903,8 +737,9 @@
         </div>
     </div>
 </div>
-<!-- Our Faqs Section End -->
-<!-- Latest News Section Start -->
+
+<!-- Latest News Section   -->
+@if ($news->count() > 0)
 <div class="latest-news">
     <div class="container">
         <div class="row section-row align-items-center">
@@ -928,6 +763,8 @@
         </div>
 
         <div class="row">
+            @foreach ($news as $newsItem )
+
             <div class="col-lg-4 col-md-6">
                 <!-- Post Item Start -->
                 <div class="post-item wow fadeInUp">
@@ -935,7 +772,7 @@
                     <div class="post-featured-image">
                         <a href="#" data-cursor-text="View">
                             <figure class="image-anime">
-                                <img src="images/post-1.jpg" alt="">
+                                <img src="{{ asset('storage/' . $newsItem->image) }}" alt="">
                             </figure>
                         </a>
                     </div>
@@ -945,8 +782,8 @@
                     <div class="post-item-body">
                         <!-- Post Item Content Start -->
                         <div class="post-item-content">
-                            <h2><a href="#">Enhancing Energy Efficiency in Door Design</a></h2>
-                            <p>Discover eco-friendly door solutions that improve insulation and reduce energy costs…</p>
+                            <h2><a href="#">{{$newsItem->title}}</a></h2>
+                            <p> {{ Str::limit(strip_tags($newsItem->description), 70) }}</p>
                         </div>
                         <!-- Post Item Content End-->
 
@@ -961,75 +798,11 @@
                 <!-- Post Item End -->
             </div>
 
-            <div class="col-lg-4 col-md-6">
-                <!-- Post Item Start -->
-                <div class="post-item wow fadeInUp" data-wow-delay="0.2s">
-                    <!-- Post Featured Image Start-->
-                    <div class="post-featured-image">
-                        <a href="#" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="images/post-2.jpg" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Post Featured Image End -->
-
-                    <!-- post Item Body Start -->
-                    <div class="post-item-body">
-                        <!-- Post Item Content Start -->
-                        <div class="post-item-content">
-                            <h2><a href="#">Exploring the Latest Trends in Door Aesthetics and Styles</a></h2>
-                            <p>From classic to contemporary, see how different styles enhance your home's appeal…</p>
-                        </div>
-                        <!-- Post Item Content End-->
-
-                        <!-- Post Item Button Start-->
-                        <div class="post-item-btn">
-                            <a href="#">Read more</a>
-                        </div>
-                        <!-- Post Item Button End-->
-                    </div>
-                    <!-- post Item Body End -->
-                </div>
-                <!-- Post Item End -->
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <!-- Post Item Start -->
-                <div class="post-item wow fadeInUp" data-wow-delay="0.4s">
-                    <!-- Post Featured Image Start-->
-                    <div class="post-featured-image">
-                        <a href="#" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="images/post-3.jpg" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Post Featured Image End -->
-
-                    <!-- post Item Body Start -->
-                    <div class="post-item-body">
-                        <!-- Post Item Content Start -->
-                        <div class="post-item-content">
-                            <h2><a href="#">Durable Materials for Lasting Door Frames</a></h2>
-                            <p>Learn about materials like aluminum and wood, each bringing unique benefits…</p>
-                        </div>
-                        <!-- Post Item Content End-->
-
-                        <!-- Post Item Button Start-->
-                        <div class="post-item-btn">
-                            <a href="#">Read more</a>
-                        </div>
-                        <!-- Post Item Button End-->
-                    </div>
-                    <!-- post Item Body End -->
-                </div>
-                <!-- Post Item End -->
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
-<!-- Latest News Section End -->
+@endif
 
 
 @endsection

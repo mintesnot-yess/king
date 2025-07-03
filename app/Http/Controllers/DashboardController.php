@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Hero;
 use App\Models\News;
 use App\Models\Slider;
@@ -14,6 +15,7 @@ class DashboardController extends Controller
         $newsCount = News::count();
         $testimonialCount = Testimonial::count();
         $sliderCount = Slider::count();
+        $brandCount = Brand::count();
 
         $latestNews = News::latest()->take(3)->get();
         $latestTestimonials = Testimonial::latest()->take(3)->get();
@@ -23,6 +25,7 @@ class DashboardController extends Controller
             'newsCount' => $newsCount,
             'testimonialCount' => $testimonialCount,
             'sliderCount' => $sliderCount,
+            'brandCount' => $brandCount,
             'latestNews' => $latestNews,
             'latestTestimonials' => $latestTestimonials,
             'latestHeroes' => $latestHeroes,

@@ -52,4 +52,6 @@
     </div>
 </main>
 
+
+@include('admin.partials.footer')
 @endsection
