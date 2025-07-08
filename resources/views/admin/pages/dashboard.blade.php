@@ -69,7 +69,7 @@
                     <div class="small-box text-bg-success">
                         <div class="inner">
                             <h3>{{$brandCount}}</h3>
-                            <p>Brands</p>
+                            <p>Logos</p>
                         </div>
                         <i class="bi bi-award small-box-icon" style="font-size:2.5rem;"></i>
                         <a href="{{route('brand.index')}}"

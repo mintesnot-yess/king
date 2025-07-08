@@ -24,14 +24,14 @@
                     <div class="card-body row">
                         <!-- title -->
                         <div class="col-md-12 mb-3">
-                            <label for="title" class="form-label">Name</label>
+                            <label for="title" class="form-label">Title</label>
                             <input type="text" name="title" class="form-control" id="title" placeholder="Enter title"
                                 value="{{ old('title', $slider->title) }}" />
                         </div>
 
                         <!-- text (TinyMCE) -->
                         <div class="col-md-12 mb-3">
-                            <label for="text" class="form-label">Test</label>
+                            <label for="text" class="form-label">Description</label>
                             <textarea name="description" class="form-control" id="editor"
                                 rows="5">{!! old('text', $slider->description) !!}</textarea>
                         </div>
@@ -58,9 +58,9 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="card-footer d-flex justify-content-between">
+                    <div class="card-footer d-flex gap-2">
                         <a href="{{ route('slider.show', $slider->id) }}" class="btn btn-secondary">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Update News</button>
+                        <button type="submit" class="btn btn-primary">Update slider</button>
                     </div>
                 </form>
 

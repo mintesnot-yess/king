@@ -95,7 +95,16 @@
                                             <p>{{ $user->email }}</p>
                                         </td>
                                         <td>
-                                            <p>{{ $user->role }}</p>
+                                            @if($user->role === 'super_admin')
+                                            <span class="badge bg-danger rounded-pill px-2 py-1"
+                                                style="font-size: 0.95em;">Super Admin</span>
+                                            @elseif($user->role === 'admin')
+                                            <span class="badge bg-primary rounded-pill px-2 py-1"
+                                                style="font-size: 0.95em;">Admin</span>
+                                            @else
+                                            <span class="badge bg-secondary rounded-pill px-2 py-1"
+                                                style="font-size: 0.95em;">{{ ucfirst($user->role) }}</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="dropdown text-center">

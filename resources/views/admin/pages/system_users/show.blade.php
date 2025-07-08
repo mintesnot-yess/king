@@ -47,14 +47,16 @@
                         <i class="fas fa-edit"></i> Edit Profile
                     </a>
 
-                    <form action="{{route('users.destroy',$user->id)}}" method="POST"
+                    @if ($user->role !== 'super_admin')
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                         onsubmit="return confirm('Are you sure?');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm  d-flex align-items-center  ">
+                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center">
                             <i class="fas fa-trash me-2"></i> Delete
                         </button>
                     </form>
+                    @endif
                 </div>
             </div>
 

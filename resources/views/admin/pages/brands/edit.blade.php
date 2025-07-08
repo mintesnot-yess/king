@@ -31,7 +31,7 @@
 
                         <!-- text (TinyMCE) -->
                         <div class="col-md-12 mb-3">
-                            <label for="text" class="form-label">Test</label>
+                            <label for="text" class="form-label">Text</label>
                             <textarea name="description" class="form-control" id="editor"
                                 rows="5">{!! old('text', $slider->description) !!}</textarea>
                         </div>

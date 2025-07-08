@@ -31,7 +31,7 @@
 
                         <!-- text (TinyMCE) -->
                         <div class="col-md-12 mb-3">
-                            <label for="text" class="form-label">Test</label>
+                            <label for="text" class="form-label">Text</label>
                             <textarea name="text" class="form-control" id="editor"
                                 rows="5">{!! old('text', $testimonial->text) !!}</textarea>
                         </div>
