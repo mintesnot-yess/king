@@ -56,28 +56,27 @@
                 </li>
 
 
-                <li class="nav-item d-none">
+                <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon bi bi-box-seam-fill"></i>
-                        <p>Widgets <i class="nav-arrow bi bi-chevron-right"></i></p>
+                        <p>
+                            Products
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./widgets/small-box.html" class="nav-link">
+                            <a href="{{ route('product.index') }}" class="nav-link">
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>Small Box</p>
+                                <p>All Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./widgets/info-box.html" class="nav-link">
+                            {{-- <a href="{{ route('categories.index') }}" class="nav-link"> --}}
+                            <a href="#" class="nav-link">
+
                                 <i class="nav-icon bi bi-circle"></i>
-                                <p>info Box</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./widgets/cards.html" class="nav-link">
-                                <i class="nav-icon bi bi-circle"></i>
-                                <p>Cards</p>
+                                <p>Categories</p>
                             </a>
                         </li>
                     </ul>

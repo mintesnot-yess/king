@@ -17,21 +17,39 @@
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="newsForm" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body row">
-                            <!-- name -->
-                            <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="Enter name" required />
-                                <div class="invalid-feedback" id="nameError">Please enter a client name.</div>
-                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="d-flex flex-wrap gap-3">
+                                    <!-- title -->
+                                    <div class="flex-fill" style="min-width:250px;">
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" name="title" class="form-control" id="title"
+                                            placeholder="Enter title" value="{{ old('title') }}" required />
+                                        <div class="invalid-feedback" id="titleError">Please enter a client title.</div>
+                                    </div>
 
+                                    <!-- category -->
+                                    <div class="flex-fill" style="min-width:250px;">
+                                        <label for="category_ids" class="form-label">Categories</label>
+                                        <select name="category" id="category_ids" class="form-control" required
+                                            value="{{ old('category') }}">
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->title }}">{{ $category->title }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback" id="categoryError">
+                                            Please select at least one category.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                             <!-- text (TinyMCE) -->
                             <div class="col-md-12 mb-3">
-                                <label for="text" class="form-label">Text</label>
+                                <label for="text" class="form-label">Description</label>
                                 <textarea name="text" class="form-control" id="editor" rows="5" required></textarea>
                                 <div class="invalid-feedback" id="textError">Please enter a text.</div>
                             </div>
@@ -39,8 +57,10 @@
                             <!-- Image Upload -->
                             <div class="col-md-6 mb-3">
                                 <label for="inputGroupFile02" class="form-label">Upload Image</label>
-                                <input type="file" name="image" class="form-control" id="inputGroupFile02" required>
-                                <div class="invalid-feedback" id="imageError">Please select a valid image (jpg, png, gif).
+                                <input type="file" name="images[]" class="form-control" id="inputGroupFile02" multiple
+                                    accept="image/*" required>
+
+                                <div class="invalid-feedback" id="imagesError">Please select a valid image (jpg, png, gif).
                                 </div>
                             </div>
 
@@ -52,6 +72,16 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- show error --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger" id="formError">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <!-- Submit Button -->
                         <div class="card-footer">
@@ -86,9 +116,10 @@
 
     <!-- Client-Side Validation + Image Preview Script -->
     <script>
-        document.getElementById('nameError').style.display = 'none';
+        document.getElementById('titleError').style.display = 'none';
         document.getElementById('textError').style.display = 'none';
-        document.getElementById('imageError').style.display = 'none';
+        document.getElementById('imagesError').style.display = 'none';
+        document.getElementById('categoryError').style.display = 'none';
         document.getElementById('newsForm').addEventListener('submit', function(e) {
             let isValid = true;
 
@@ -98,9 +129,15 @@
             const titleInput = document.getElementById('title');
             const descriptionTextarea = document.getElementById('editor');
             const imageInput = document.getElementById('inputGroupFile02');
+            const categoryInput = document.getElementById('inputGroupFile02');
+
+
+
 
             const title = titleInput.value.trim();
             const description = tinymce.get(descriptionTextarea.id).getContent().trim();
+            const categoryCheckboxes = categoryInput.value;
+
 
             // Validate Title
             if (!title) {
@@ -114,6 +151,13 @@
                 document.getElementById('textError').style.display = 'block';
                 isValid = false;
             }
+            if (categoryCheckboxes.length === 0) {
+                document.getElementById('categoryError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('categoryError').style.display = 'none';
+            }
+
 
             // Validate Image (if selected)
             if (imageInput.files.length > 0) {

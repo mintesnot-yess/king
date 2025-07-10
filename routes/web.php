@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\NewsController;
@@ -45,4 +47,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('brand', BrandController::class);
+    Route::resource('product', ProductController::class);
 });
