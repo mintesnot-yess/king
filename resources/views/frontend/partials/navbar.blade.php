@@ -5,8 +5,10 @@
             <div class="col-lg-6 col-md-8">
                 <div class="topbar-contact-info">
                     <ul>
-                        <li><a href="mailto:info@kingsteeldoor.com"><img src="{{ asset('images/icon-mail.svg') }}" alt="">info@kingsteeldoor.com</a></li>
-                        <li><a href="tel:+251911216481"><img src="{{ asset('images/icon-mail.svg') }}" alt="">+251 911 21 64 81</a></li>
+                        <li><a href="mailto:info@kingsteeldoor.com"><img src="{{ asset('images/icon-mail.svg') }}"
+                                    alt="">info@kingsteeldoor.com</a></li>
+                        <li><a href="tel:+251911216481"><img src="{{ asset('images/icon-mail.svg') }}" alt="">+251
+                                911 21 64 81</a></li>
                     </ul>
                 </div>
             </div>
@@ -14,7 +16,8 @@
             <div class="col-lg-4 col-md-3">
                 <div class="topbar-time">
                     <ul>
-                        <li><a href="#"><img src="{{ asset('images/icon-clock.svg') }}" alt="">Mon - Sat 8:00 AM - 05:00 PM</a></li>
+                        <li><a href="#"><img src="{{ asset('images/icon-clock.svg') }}" alt="">Mon - Sat
+                                8:00 AM - 05:00 PM</a></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                     <div class="nav-menu-wrapper">
                         <ul class="navbar-nav mr-auto" id="menu">
                             <li class="nav-item"><a class="nav-link active" href="{{ url('/') }}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
                             <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Gallery</a>

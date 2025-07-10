@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\DashboardController;
@@ -16,7 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes (No Auth Needed)
 Route::get('/', [FrontendController::class, 'index'])->name('home');
-Route::view('/about', 'frontend.pages.about')->name('about');
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
+Route::get('/product', [FrontendController::class, 'product'])->name('product');
+// product details page
+Route::get('/product/{id}', [FrontendController::class, 'productDetails'])->name('product.detail');
+
+
 
 // Auth Routes (Login/Logout)
 Route::middleware('guest')->group(function () {
@@ -41,11 +48,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
     });    // Super Admin-Only Routes (Require 'super_admin' role)
 
-
     // Regular Admin Routes (No special role needed)
     Route::resource('news', NewsController::class);
     Route::resource('testimonial', TestimonialController::class);
     Route::resource('slider', SliderController::class);
     Route::resource('brand', BrandController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
 });

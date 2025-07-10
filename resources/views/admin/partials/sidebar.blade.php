@@ -56,8 +56,12 @@
                 </li>
 
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                @php
+                    $isProductActive = request()->routeIs('product.*') || request()->routeIs('category.*');
+                @endphp
+
+                <li class="nav-item has-treeview {{ $isProductActive ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ $isProductActive ? 'active' : '' }}">
                         <i class="nav-icon bi bi-box-seam-fill"></i>
                         <p>
                             Products
@@ -66,21 +70,22 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('product.index') }}" class="nav-link">
+                            <a href="{{ route('product.index') }}"
+                                class="nav-link {{ request()->routeIs('product.index') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>All Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a href="{{ route('categories.index') }}" class="nav-link"> --}}
-                            <a href="#" class="nav-link">
-
+                            <a href="{{ route('category.index') }}"
+                                class="nav-link {{ request()->routeIs('category.index') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+
             </ul>
             <!--end::Sidebar Menu-->
         </nav>

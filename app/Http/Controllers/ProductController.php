@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -78,8 +79,8 @@ class ProductController extends Controller
             'is_active' => true,
         ]);
         // Redirect to news index with success message
-        return redirect()->route('testimonial.index')
-            ->with('success', 'Testimonial created successfully.');
+        return redirect()->route('product.index')
+            ->with('success', 'Product created successfully.');
     }
 
 
@@ -150,5 +151,22 @@ class ProductController extends Controller
             ],
             'currentPage' => 'Show Product',
         ]);
+    }
+    // destroy product
+    public function destroy(Product $product)
+    {
+        // Delete the product
+        $product->delete();
+        // delete multiple images
+        if ($product->images) {
+            $images = json_decode($product->images, true);
+            foreach ($images as $image) {
+                Storage::disk('public')->delete($image);
+            }
+        }
+
+        // Redirect to the product index with a success message
+        return redirect()->route('product.index')
+            ->with('success', 'Product deleted successfully.');
     }
 }

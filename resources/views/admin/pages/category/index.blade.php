@@ -19,7 +19,7 @@
 
                                 {{-- add --}}
                                 <div class="card-tools">
-                                    <a href="{{ route('product.create') }}" class="btn btn-primary">
+                                    <a href="{{ route('category.create') }}" class="btn btn-primary">
                                         <i class="fas fa-plus me-2"></i> Create New </a>
 
                                 </div>
@@ -33,17 +33,15 @@
                                             <th style="width: 10px">#</th>
                                             <th>Title</th>
                                             <th>Description</th>
-                                            <th>Images</th>
                                             <th style="width: 120px">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($productsList as $index => $items)
+                                        @forelse ($categories as $index => $items)
                                             <tr class="align-middle">
                                                 <td>{{ $index + 1 }}.</td>
                                                 <td>
-                                                    <a
-                                                        href="{{ route('product.show', $items->id) }}">{{ $items->title }}</a>
+                                                    <p>{{ $items->title }} </p>
                                                 </td>
                                                 <td>
                                                     <p
@@ -53,32 +51,7 @@
 
                                                     </p>
                                                 </td>
-                                                <td>
-                                                    <div class="text-center position-relative d-inline-block">
-                                                        @php
-                                                            $images = [];
-                                                            if ($items->images) {
-                                                                $decoded = json_decode($items->images, true);
-                                                                $images = is_array($decoded)
-                                                                    ? $decoded
-                                                                    : [$items->images];
-                                                            }
-                                                        @endphp
-                                                        @if (count($images) > 0)
-                                                            <div style="position: relative; display: inline-block;">
-                                                                <img src="{{ asset('storage/' . trim($images[0])) }}"
-                                                                    alt="Image" width="60"
-                                                                    class="img-thumbnail me-1 mb-1">
-                                                                <span class="badge"
-                                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1rem; border-radius: 0.375rem;">
-                                                                    {{ count($images) }}
-                                                                </span>
-                                                            </div>
-                                                        @else
-                                                            <span class="text-muted">No Image</span>
-                                                        @endif
-                                                    </div>
-                                                </td>
+
                                                 <td>
                                                     <div class="dropdown text-center">
                                                         <button class="btn btn-sm btn-light   p-0" type="button"
@@ -92,14 +65,9 @@
                                                         </button>
 
                                                         <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
                                                             <li>
-                                                                <a class="dropdown-item d-flex align-items-center"
-                                                                    href="{{ route('product.edit', $items->id) }}">
-                                                                    <i class="fas fa-edit me-2"></i> Edit
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <form action="{{ route('product.destroy', $items->id) }}"
+                                                                <form action="{{ route('category.destroy', $items->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure?');">
                                                                     @csrf
