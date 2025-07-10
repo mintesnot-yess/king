@@ -21,37 +21,37 @@
                 aria-label="Main navigation" data-accordion="false" id="navigation">
 
                 <li class="nav-item">
-                    <a href="{{ route('admin') }}" class="nav-link {{request()->is('admin') ? 'active' : ''}}">
+                    <a href="{{ route('admin') }}" class="nav-link {{ request()->is('admin') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-speedometer2"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('news.index') }}"
-                        class="nav-link {{request()->is('admin/news') ? 'active' : ''}}">
+                        class="nav-link {{ request()->is('admin/news') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-newspaper"></i>
                         <p>News</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('testimonial.index') }}"
-                        class="nav-link {{request()->is('admin/testimonial') ? 'active' : ''}}">
+                        class="nav-link {{ request()->is('admin/testimonial') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-people"></i>
                         <p>Clients Testimonial</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('slider.index') }}"
-                        class="nav-link {{request()->is('admin/slider') ? 'active' : ''}}">
+                        class="nav-link {{ request()->is('admin/slider') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-sliders"></i>
                         <p>Sliders</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('brand.index') }}"
-                        class="nav-link {{request()->is('admin/brand') ? 'active' : ''}}">
+                        class="nav-link {{ request()->is('admin/brand') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-images"></i>
-                        <p>Logos</p>
+                        <p>Company Logos</p>
                     </a>
                 </li>
 
