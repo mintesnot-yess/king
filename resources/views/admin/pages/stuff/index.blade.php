@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Products | Kings Admin')
+@section('title', 'Stuff | Kings Admin')
 @section('content')
 
     <main class="app-main">
@@ -19,7 +19,7 @@
 
                                 {{-- add --}}
                                 <div class="card-tools">
-                                    <a href="{{ route('product.create') }}" class="btn btn-primary">
+                                    <a href="{{ route('stuff.create') }}" class="btn btn-primary">
                                         <i class="fas fa-plus me-2"></i> Create New </a>
 
                                 </div>
@@ -31,65 +31,36 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Category</th>
+                                            <th>User name</th>
+                                            <th>phone</th>
+                                            <th>heir date</th>
 
-                                            <th>Images</th>
                                             <th style="width: 120px">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($productsList as $index => $items)
+                                        @forelse ($stuffList as $index => $item)
                                             <tr class="align-middle">
                                                 <td>{{ $index + 1 }}.</td>
                                                 <td>
                                                     <a
-                                                        href="{{ route('product.show', $items->id) }}">{{ $items->title }}</a>
+                                                        href="{{ route('testimonial.show', $item->id) }}">{{ $item->name }}</a>
                                                 </td>
                                                 <td>
                                                     <p
                                                         style="width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 
-                                                        {!! Str::limit(strip_tags($items->description), 50) !!}
-
+                                                        {{ Str::limit(strip_tags($item->text), 50) }}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p
-                                                        style="width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 
-                                                        {{ $items->category ? $items->category->title : 'No Category' }}
-                                                        {{-- add description --}}
-
-
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <div class="text-center position-relative d-inline-block">
-                                                        @php
-                                                            $images = [];
-                                                            if ($items->images) {
-                                                                $decoded = json_decode($items->images, true);
-                                                                $images = is_array($decoded)
-                                                                    ? $decoded
-                                                                    : [$items->images];
-                                                            }
-                                                        @endphp
-                                                        @if (count($images) > 0)
-                                                            <div style="position: relative; display: inline-block;">
-                                                                <img src="{{ asset('storage/' . trim($images[0])) }}"
-                                                                    alt="Image" width="60"
-                                                                    class="img-thumbnail me-1 mb-1">
-                                                                <span class="badge"
-                                                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1rem; border-radius: 0.375rem;">
-                                                                    {{ count($images) }}
-                                                                </span>
-                                                            </div>
-                                                        @else
-                                                            <span class="text-muted">No Image</span>
-                                                        @endif
-                                                    </div>
+                                                    @if ($item->image)
+                                                        <img src="{{ asset('storage/' . $item->image) }}" alt="Image"
+                                                            width="60" class="img-thumbnail">
+                                                    @else
+                                                        <span class="text-muted">No Image</span>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <div class="dropdown text-center">
@@ -106,12 +77,12 @@
                                                         <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                                                             <li>
                                                                 <a class="dropdown-item d-flex align-items-center"
-                                                                    href="{{ route('product.edit', $items->id) }}">
+                                                                    href="{{ route('stuff.edit', $item->id) }}">
                                                                     <i class="fas fa-edit me-2"></i> Edit
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <form action="{{ route('product.destroy', $items->id) }}"
+                                                                <form action="{{ route('stuff.destroy', $item->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure?');">
                                                                     @csrf
@@ -129,7 +100,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="5" class="text-center">No items found.</td>
+                                                <td colspan="5" class="text-center">No item found.</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

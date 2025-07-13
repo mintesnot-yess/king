@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Products | Kings Admin')
+@section('title', 'Services | Kings Admin')
 @section('content')
 
     <main class="app-main">
@@ -19,7 +19,7 @@
 
                                 {{-- add --}}
                                 <div class="card-tools">
-                                    <a href="{{ route('product.create') }}" class="btn btn-primary">
+                                    <a href="{{ route('service.create') }}" class="btn btn-primary">
                                         <i class="fas fa-plus me-2"></i> Create New </a>
 
                                 </div>
@@ -33,19 +33,18 @@
                                             <th style="width: 10px">#</th>
                                             <th>Title</th>
                                             <th>Description</th>
-                                            <th>Category</th>
 
                                             <th>Images</th>
                                             <th style="width: 120px">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($productsList as $index => $items)
+                                        @forelse ($serviceList as $index => $items)
                                             <tr class="align-middle">
                                                 <td>{{ $index + 1 }}.</td>
                                                 <td>
                                                     <a
-                                                        href="{{ route('product.show', $items->id) }}">{{ $items->title }}</a>
+                                                        href="{{ route('service.show', $items->id) }}">{{ $items->title }}</a>
                                                 </td>
                                                 <td>
                                                     <p
@@ -55,16 +54,7 @@
 
                                                     </p>
                                                 </td>
-                                                <td>
-                                                    <p
-                                                        style="width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 
-                                                        {{ $items->category ? $items->category->title : 'No Category' }}
-                                                        {{-- add description --}}
-
-
-                                                    </p>
-                                                </td>
                                                 <td>
                                                     <div class="text-center position-relative d-inline-block">
                                                         @php
@@ -106,12 +96,12 @@
                                                         <ul class="dropdown-menu dropdown-menu-end shadow border-0">
                                                             <li>
                                                                 <a class="dropdown-item d-flex align-items-center"
-                                                                    href="{{ route('product.edit', $items->id) }}">
+                                                                    href="{{ route('service.edit', $items->id) }}">
                                                                     <i class="fas fa-edit me-2"></i> Edit
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <form action="{{ route('product.destroy', $items->id) }}"
+                                                                <form action="{{ route('service.destroy', $items->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure?');">
                                                                     @csrf

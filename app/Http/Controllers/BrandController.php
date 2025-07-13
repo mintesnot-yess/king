@@ -38,7 +38,7 @@ class BrandController extends Controller
                 ['name' => 'Create', 'url' => null]
             ],
             'currentPage' => 'Create Brand',
-        ], );
+        ],);
     }
 
     /**
@@ -83,7 +83,7 @@ class BrandController extends Controller
                 ['name' => 'View', 'url' => null]
             ],
             'currentPage' => 'View Brand',
-        ], );
+        ],);
     }
 
     /**

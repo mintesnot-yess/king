@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <!-- Page Header Box Start -->
                     <div class="page-header-box">
-                        <h1 class="text-anime-style-3" data-cursor="-opaque">{{ $product->title }}</h1>
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">{{ $service->title }}</h1>
 
                     </div>
                     <!-- Page Header Box End -->
@@ -32,19 +32,19 @@
                         <!-- Project Detail List Start -->
                         <div class="project-detail-list wow fadeInUp">
                             <div class="project-detail-title">
-                                <h3>about Product</h3>
+                                <h3>About Service</h3>
                             </div>
                             <!-- Project Detail Item Start -->
 
-                            <div class="project-detail-item">
+                            {{-- <div class="project-detail-item">
                                 <div class="icon-box">
                                     <i class="fa-regular fa-circle-check"></i>
                                 </div>
                                 <div class="project-detail-content">
                                     <h3> Category </h3>
-                                    <p>{{ $product->category->title }}</p>
+                                    <p>{{ $service->category->title }}</p>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -114,7 +114,7 @@
                             <!-- Project Information Start -->
                             <div class="project-info">
                                 <h2 class="text-anime-style-3">Project information</h2>
-                                {!! $product->description !!}
+                                {!! $service->description !!}
                             </div>
                             <!-- Project Information End -->
 

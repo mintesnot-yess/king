@@ -2,6 +2,8 @@
 @section('title', 'About Us')
 
 @section('content')
+    @include('frontend.components.preload');
+
 
     <!-- Page Header Start -->
     <div class="page-header parallaxie">
@@ -626,93 +628,91 @@
             </div>
         </div>
     </div>
-    <!-- Our Work Section End -->
 
-    <!-- Our Client Testimonial Start -->
-    <div class="our-testimonial parallaxie">
-        <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-6">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">client testimonials</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Client testimonials your satisfaction matters
-                        </h2>
+
+    @if ($testimonials->count() > 0)
+        <div class="our-testimonial parallaxie">
+            <div class="container">
+                <div class="row section-row align-items-center">
+                    <div class="col-lg-6">
+                        <!-- Section Title Start -->
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">client testimonials</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Client testimonials your satisfaction
+                                matters
+                            </h2>
+                        </div>
+                        <!-- Section Title End -->
                     </div>
-                    <!-- Section Title End -->
+
+                    <div class="col-lg-6">
+                        <!-- Section Title Content Start -->
+                        <div class="section-title-content">
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">We strive for excellence in every project. Our
+                                clients share their satisfaction and experiences, showcasing our commitment to quality and
+                                service.</p>
+                        </div>
+                        <!-- Section Title Content End -->
+                    </div>
                 </div>
 
-                <div class="col-lg-6">
-                    <!-- Section Title Content Start -->
-                    <div class="section-title-content">
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">We strive for excellence in every project. Our
-                            clients share their satisfaction and experiences, showcasing our commitment to quality and
-                            service.</p>
-                    </div>
-                    <!-- Section Title Content End -->
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Testimonial Slider Start -->
+                        <div class="testimonial-slider">
+                            <div class="swiper">
+                                <div class="swiper-wrapper" data-cursor-text="Drag">
+                                    <!-- Testimonial Slide Start -->
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Testimonial Slider Start -->
-                    <div class="testimonial-slider">
-                        <div class="swiper">
-                            <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
-
-                                @foreach ($testimonials as $testimonial)
-                                    <div class="swiper-slide">
-                                        <div class="testimonial-item">
-                                            <div class="testimonial-header">
-                                                <div class="testimonial-quote-img">
-                                                    <figure>
-                                                        <img src="images/quote-img.svg" alt="">
-                                                    </figure>
+                                    @foreach ($testimonials as $testimonial)
+                                        <div class="swiper-slide">
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-header">
+                                                    <div class="testimonial-quote-img">
+                                                        <figure>
+                                                            <img src="images/quote-img.svg" alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="testimonial-rating">
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                        <i class="fa-solid fa-star"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="testimonial-rating">
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
-                                                    <i class="fa-solid fa-star"></i>
+                                                <div class="testimonial-content">
+                                                    <p>
+                                                        {!! $testimonial->text !!}
+                                                    </p>
                                                 </div>
-                                            </div>
-                                            <div class="testimonial-content">
-                                                <p>
-                                                    {!! $testimonial->text !!}
-                                                </p>
-                                            </div>
-                                            <div class="testimonial-author">
-                                                <div class="author-image">
-                                                    <figure class="image-anime">
-                                                        <img src="{{ asset('storage/' . $testimonial->image) }}"
-                                                            alt="">
-                                                    </figure>
-                                                </div>
-                                                <div class="author-content">
-                                                    <h3>{{ $testimonial->name }}</h3>
+                                                <div class="testimonial-author">
+                                                    <div class="author-image">
+                                                        <figure class="image-anime">
+                                                            <img src="{{ asset('storage/' . $testimonial->image) }}"
+                                                                alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="author-content">
+                                                        <h3>{{ $testimonial->name }}</h3>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                                <!-- Testimonial Slide End -->
+                                    @endforeach
 
-                                <!-- Testimonial Slide Start -->
-
-                                <!-- Testimonial Slide End -->
+                                </div>
+                                <div class="swiper-pagination"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
                         </div>
+                        <!-- Testimonial Slider End -->
                     </div>
-
-                    <!-- Testimonial Slider End -->
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Our Client Testimonial End -->
+    @endif
+
+
 
     <!-- Our Faqs Section Start -->
     <div class="our-faqs">

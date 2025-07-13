@@ -1,9 +1,10 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Edit Product | Kings Admin')
+@section('title', 'Create Testimonial | Kings Admin')
 @section('content')
 
     <main class="app-main">
+        {{-- Breadcrumb --}}
 
         @include('admin.partials.bordercrumb')
 
@@ -12,14 +13,12 @@
 
                 <div class="card card-primary card-outline mb-4">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Product</h3>
+                        <h3 class="card-title">Create Service</h3>
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('product.update', $product->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form id="newsForm" action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
 
                         <div class="card-body row">
                             <div class="col-12 mb-3">
@@ -28,40 +27,26 @@
                                     <div class="flex-fill" style="min-width:250px;">
                                         <label for="title" class="form-label">Title</label>
                                         <input type="text" name="title" class="form-control" id="title"
-                                            placeholder="Enter title" value="{{ old('title', $product->title) }}"
-                                            required />
-                                        <div class="invalid-feedback" id="titleError">Please enter a product title.</div>
+                                            placeholder="Enter title" value="{{ old('title') }}" required />
+                                        <div class="invalid-feedback" id="titleError">Please enter a client title.</div>
                                     </div>
 
-                                    <!-- category -->
-                                    <div class="flex-fill" style="min-width:250px;">
-                                        <label for="category" class="form-label">Categories</label>
-                                        <select name="category_id" id="category" class="form-control" required>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ old('category', $product->category->title) == $category->title ? 'selected' : '' }}>
-                                                    {{ $category->title }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback" id="categoryError">
-                                            Please select at least one category.
-                                        </div>
-                                    </div>
+
+
                                 </div>
                             </div>
                             <!-- text (TinyMCE) -->
                             <div class="col-md-12 mb-3">
                                 <label for="text" class="form-label">Description</label>
-                                <textarea name="description" class="form-control" id="editor" rows="5" required>{!! old('text', $product->description) !!}</textarea>
-                                <div class="invalid-feedback" id="textError">Please enter a description.</div>
+                                <textarea name="text" class="form-control" id="editor" rows="5" required></textarea>
+                                <div class="invalid-feedback" id="textError">Please enter a text.</div>
                             </div>
 
                             <!-- Image Upload -->
                             <div class="col-md-6 mb-3">
-                                <label for="inputGroupFile02" class="form-label">Upload Images</label>
+                                <label for="inputGroupFile02" class="form-label">Upload Image</label>
                                 <input type="file" name="images[]" class="form-control" id="inputGroupFile02" multiple
-                                    accept="image/*">
+                                    accept="image/*" required>
 
                                 <div class="invalid-feedback" id="imagesError">Please select a valid image (jpg, png, gif).
                                 </div>
@@ -88,8 +73,7 @@
 
                         <!-- Submit Button -->
                         <div class="card-footer">
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Update Product</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
 
@@ -99,7 +83,7 @@
     </main>
 
     <!-- Load TinyMCE -->
-    <script src="https://cdn.tiny.cloud/1/rtyoru7f38ggmeur38qexjy0u6h395vxbigucmtgka4u2xpa/tinymce/6/tinymce.min.js"
+    <script src="https://cdn.tiny.cloud/1/rtyoru7f38ggmeur38qexjy0u6h395vxbigucmtgka4u2xpa/tinymce/6/tinymce.min.js "
         referrerpolicy="origin"></script>
 
     <!-- Initialize TinyMCE -->
@@ -118,11 +102,11 @@
         });
     </script>
 
+    <!-- Client-Side Validation + Image Preview Script -->
     <script>
         document.getElementById('titleError').style.display = 'none';
         document.getElementById('textError').style.display = 'none';
         document.getElementById('imagesError').style.display = 'none';
-        document.getElementById('categoryError').style.display = 'none';
         document.getElementById('newsForm').addEventListener('submit', function(e) {
             let isValid = true;
 
@@ -132,7 +116,6 @@
             const titleInput = document.getElementById('title');
             const descriptionTextarea = document.getElementById('editor');
             const imageInput = document.getElementById('inputGroupFile02');
-            const categoryInput = document.getElementById('inputGroupFile02');
 
 
 
@@ -181,30 +164,23 @@
             }
         });
 
-        // Image preview logic for multiple images
+        // Image preview logic
         document.getElementById('inputGroupFile02').addEventListener('change', function() {
-            const files = this.files;
+            const file = this.files[0];
             const preview = document.getElementById('imagePreview');
-            preview.innerHTML = '';
 
-            if (files.length) {
-                Array.from(files).forEach(file => {
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            const img = document.createElement('img');
-                            img.src = e.target.result;
-                            img.style.maxWidth = '100px';
-                            img.style.maxHeight = '100px';
-                            img.style.borderRadius = '5px';
-                            img.style.marginRight = '5px';
-                            preview.appendChild(img);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.innerHTML =
+                        `<img src="${e.target.result}" style="max-width:100%; max-height:150px; border-radius:5px;">`;
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '<span style="color: #888;">Invalid image</span>';
             }
-
         });
     </script>
 

@@ -27,6 +27,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('slider.index') }}"
+                        class="nav-link {{ request()->is('admin/slider') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-sliders"></i>
+                        <p>Hero Slide</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('news.index') }}"
                         class="nav-link {{ request()->is('admin/news') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-newspaper"></i>
@@ -40,18 +47,27 @@
                         <p>Clients Testimonial</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('slider.index') }}"
-                        class="nav-link {{ request()->is('admin/slider') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-sliders"></i>
-                        <p>Sliders</p>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('brand.index') }}"
                         class="nav-link {{ request()->is('admin/brand') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-images"></i>
                         <p>Company Logos</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('service.index') }}"
+                        class="nav-link {{ request()->is('admin/service') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-newspaper"></i>
+                        <p>Service</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('stuff.index') }}"
+                        class="nav-link {{ request()->is('admin/stuff') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-newspaper"></i>
+                        <p>Stuff</p>
                     </a>
                 </li>
 

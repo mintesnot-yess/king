@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->string('title');
             $table->text('description')->nullable();
             $table->json('images')->nullable();
-            $table->string('category');
+            $table->foreignId('category_id')->constrained(table: 'categories')->restrictOnDelete()->cascadeOnUpdate();
+
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

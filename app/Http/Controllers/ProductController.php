@@ -14,6 +14,9 @@ class ProductController extends Controller
     {
 
         $productsList = Product::latest()->paginate(10);
+        $productsList->load('category');
+
+
 
         return view(
             'admin.pages.product.index',
@@ -52,11 +55,9 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
-
-        // dd($request->all());
 
         if ($validator->fails()) {
             return redirect()->back()
@@ -73,7 +74,7 @@ class ProductController extends Controller
 
         Product::create([
             'title' => $request->input('title'),
-            'category' => $request->input('category'),
+            'category_id' => $request->input('category_id'),
             'description' => $request->input('text') ?? null,
             'images' => json_encode($imagePaths),
             'is_active' => true,
@@ -110,7 +111,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         if ($validator->fails()) {
@@ -130,7 +131,7 @@ class ProductController extends Controller
 
         $product->update([
             'title' => $request->input('title'),
-            'category' => $request->input('category'),
+            'category_id' => $request->input('category_id'),
             'description' => $request->input('description') ?? null,
             'images' => json_encode($imagePaths),
             'is_active' => true,

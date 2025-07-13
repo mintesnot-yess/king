@@ -40,8 +40,8 @@
                         <ul class="navbar-nav mr-auto" id="menu">
                             <li class="nav-item"><a class="nav-link active" href="{{ url('/') }}">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('service') }}">Services</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('product') }}">Products</a></li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Gallery</a>
                                 <ul>
                                     <li class="nav-item"><a class="nav-link" href="#">Image Gallery</a></li>

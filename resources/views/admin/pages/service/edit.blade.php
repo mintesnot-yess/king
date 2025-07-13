@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Edit Product | Kings Admin')
+@section('title', 'Edit Service | Kings Admin')
 @section('content')
 
     <main class="app-main">
@@ -12,11 +12,11 @@
 
                 <div class="card card-primary card-outline mb-4">
                     <div class="card-header">
-                        <h3 class="card-title">Edit Product</h3>
+                        <h3 class="card-title">Edit Service</h3>
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('product.update', $product->id) }}" method="POST"
+                    <form id="newsForm" action="{{ route('service.update', $service->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -28,32 +28,18 @@
                                     <div class="flex-fill" style="min-width:250px;">
                                         <label for="title" class="form-label">Title</label>
                                         <input type="text" name="title" class="form-control" id="title"
-                                            placeholder="Enter title" value="{{ old('title', $product->title) }}"
+                                            placeholder="Enter title" value="{{ old('title', $service->title) }}"
                                             required />
-                                        <div class="invalid-feedback" id="titleError">Please enter a product title.</div>
+                                        <div class="invalid-feedback" id="titleError">Please enter a service title.</div>
                                     </div>
 
-                                    <!-- category -->
-                                    <div class="flex-fill" style="min-width:250px;">
-                                        <label for="category" class="form-label">Categories</label>
-                                        <select name="category_id" id="category" class="form-control" required>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                    {{ old('category', $product->category->title) == $category->title ? 'selected' : '' }}>
-                                                    {{ $category->title }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback" id="categoryError">
-                                            Please select at least one category.
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <!-- text (TinyMCE) -->
                             <div class="col-md-12 mb-3">
                                 <label for="text" class="form-label">Description</label>
-                                <textarea name="description" class="form-control" id="editor" rows="5" required>{!! old('text', $product->description) !!}</textarea>
+                                <textarea name="description" class="form-control" id="editor" rows="5" required>{!! old('text', $service->description) !!}</textarea>
                                 <div class="invalid-feedback" id="textError">Please enter a description.</div>
                             </div>
 
@@ -88,8 +74,8 @@
 
                         <!-- Submit Button -->
                         <div class="card-footer">
-                            <a href="{{ route('product.show', $product->id) }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Update Product</button>
+                            <a href="{{ route('service.index', $service->id) }}" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Update Service</button>
                         </div>
                     </form>
 
@@ -122,7 +108,6 @@
         document.getElementById('titleError').style.display = 'none';
         document.getElementById('textError').style.display = 'none';
         document.getElementById('imagesError').style.display = 'none';
-        document.getElementById('categoryError').style.display = 'none';
         document.getElementById('newsForm').addEventListener('submit', function(e) {
             let isValid = true;
 
@@ -132,7 +117,6 @@
             const titleInput = document.getElementById('title');
             const descriptionTextarea = document.getElementById('editor');
             const imageInput = document.getElementById('inputGroupFile02');
-            const categoryInput = document.getElementById('inputGroupFile02');
 
 
 

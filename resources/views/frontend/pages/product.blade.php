@@ -45,7 +45,7 @@
                     <div class="row project-item-boxes align-items-center">
 
                         @foreach ($products as $product)
-                            <div class="col-lg-4 col-md-6 project-item-box {{ $product->category }}">
+                            <div class="col-lg-4 col-md-6 project-item-box {{ $product->category->title }}">
                                 <!-- Project Item Start -->
                                 <div class="project-item wow fadeInUp">
                                     <div class="project-image">
@@ -73,9 +73,9 @@
 
                                     <div class="project-content">
                                         <h3>
-                                            <a href="{{ route('product.detail', $product->id) }}">{{ $product->name }}
-                                                {{ $product->name }}
-                                                <span class="project-category">{{ $product->category }}</span>
+                                            <a href="{{ route('product.detail', $product->id) }}">
+
+                                                <span class="project-category"> {{ $product->title }}</span>
                                             </a>
                                         </h3>
                                     </div>
