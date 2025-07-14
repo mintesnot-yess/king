@@ -44,11 +44,13 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('product') }}">Products</a></li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Gallery</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="#">Image Gallery</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Video Gallery</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('images') }}">Image
+                                            Gallery</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('videos') }}">Video
+                                            Gallery</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
                     <div class="header-social-icons">

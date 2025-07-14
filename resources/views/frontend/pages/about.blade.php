@@ -863,104 +863,41 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Team Member Item Start -->
-                    <div class="team-member-item wow fadeInUp">
-                        <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="images/team-1.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Team Image End -->
+                @foreach ($stuff as $item)
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Team Member Item Start -->
+                        <div class="team-member-item wow fadeInUp">
+                            <!-- Team Image Start -->
+                            <div class="team-image">
+                                <a href="team-single.html" data-cursor-text="View">
+                                    <figure class="image-anime">
+                                        <img src="{{ asset('storage/' . $item->image) }}">
+                                    </figure>
+                                </a>
+                            </div>
+                            <!-- Team Image End -->
 
-                        <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">rechard brown</a></h3>
-                            <p> CEO & founder</p>
-                        </div>
-                        <!-- Team Content End -->
+                            <!-- Team Content Start -->
+                            <div class="team-content">
+                                <h3><a href="team-single.html">{{ $item->name }}</a></h3>
+                                <p> {{ $item->position }}</p>
+                            </div>
+                            <!-- Team Content End -->
 
-                        <!-- Team Social Icon Start -->
-                        <div class="team-social-icon">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            </ul>
+                            <!-- Team Social Icon Start -->
+                            <div class="team-social-icon">
+                                <ul>
+                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- Team Social Icon End -->
                         </div>
-                        <!-- Team Social Icon End -->
+                        <!-- Team Member Item End -->
                     </div>
-                    <!-- Team Member Item End -->
-                </div>
+                @endforeach
 
-                <div class="col-lg-4 col-md-6">
-                    <!-- Team Member Item Start -->
-                    <div class="team-member-item wow fadeInUp" data-wow-delay="0.2s">
-                        <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="images/team-2.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Team Image End -->
-
-                        <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">jane doe</a></h3>
-                            <p>General manager</p>
-                        </div>
-                        <!-- Team Content End -->
-
-                        <!-- Team Social Icon Start -->
-                        <div class="team-social-icon">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Team Social Icon End -->
-                    </div>
-                    <!-- Team Member Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Team Member Item Start -->
-                    <div class="team-member-item wow fadeInUp" data-wow-delay="0.4s">
-                        <!-- Team Image Start -->
-                        <div class="team-image">
-                            <a href="team-single.html" data-cursor-text="View">
-                                <figure class="image-anime">
-                                    <img src="images/team-3.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <!-- Team Image End -->
-
-                        <!-- Team Content Start -->
-                        <div class="team-content">
-                            <h3><a href="team-single.html">emily johnson</a></h3>
-                            <p>Sales representative</p>
-                        </div>
-                        <!-- Team Content End -->
-
-                        <!-- Team Social Icon Start -->
-                        <div class="team-social-icon">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Team Social Icon End -->
-                    </div>
-                    <!-- Team Member Item End -->
-                </div>
             </div>
         </div>
     </div>

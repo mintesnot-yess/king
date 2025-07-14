@@ -17,7 +17,7 @@
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="form" action="{{ route('service.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body row">
@@ -107,7 +107,7 @@
         document.getElementById('titleError').style.display = 'none';
         document.getElementById('textError').style.display = 'none';
         document.getElementById('imagesError').style.display = 'none';
-        document.getElementById('newsForm').addEventListener('submit', function(e) {
+        document.getElementById('form').addEventListener('submit', function(e) {
             let isValid = true;
 
             // Reset errors

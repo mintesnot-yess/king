@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['image', 'video']);
+            $table->string('file_path'); // for image or video path
             $table->timestamps();
         });
     }

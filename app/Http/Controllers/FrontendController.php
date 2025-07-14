@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Gallery;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Slider;
+use App\Models\Stuff;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -34,8 +36,11 @@ class FrontendController extends Controller
     public function about()
     {
         $testimonials = Testimonial::all();
+        $stuff = Stuff::all();
+
         return view('frontend.pages.about', [
-            'testimonials' => $testimonials
+            'testimonials' => $testimonials,
+            'stuff' => $stuff
         ]);
     }
     public function product()
@@ -86,5 +91,43 @@ class FrontendController extends Controller
             'service' => $service,
             'images' => $images
         ]);
+    }
+
+    public function images()
+    {
+        $images = Gallery::where('type', 'image')->latest()->get();
+
+        return view('frontend.pages.images', [
+            'images' => $images
+        ]);
+    }
+
+    public function videos()
+    {
+        $videos = Gallery::where('type', 'video')->latest()->get();
+
+        // Add thumbnail URLs to each video
+        foreach ($videos as $video) {
+            $video->thumbnail = $this->getYoutubeThumbnail($video->file_path);
+        }
+
+        return view('frontend.pages.videos', [
+            'videos' => $videos
+        ]);
+    }
+
+    public function contact()
+    {
+        return view('frontend.pages.contact');
+    }
+
+
+    private function getYoutubeThumbnail($url)
+    {
+        preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^\&\?\/]+)/', $url, $matches);
+        if (isset($matches[1])) {
+            return 'https://img.youtube.com/vi/' . $matches[1] . '/hqdefault.jpg';
+        }
+        return asset('images/default_video.jpg');
     }
 }

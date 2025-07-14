@@ -13,28 +13,35 @@
 
                 <div class="card card-primary card-outline mb-4">
                     <div class="card-header">
-                        <h3 class="card-title">Create Testimonial</h3>
+                        <h3 class="card-title">Create stuff</h3>
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="form" action="{{ route('stuff.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body row">
                             <!-- name -->
                             <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label">Full Name</label>
                                 <input type="text" name="name" class="form-control" id="name"
                                     placeholder="Enter name" required />
                                 <div class="invalid-feedback" id="nameError">Please enter name.</div>
                             </div>
 
-                            <!-- name -->
+                            <!-- position -->
                             <div class="col-md-12 mb-3">
-                                <label for="name" class="form-label">Position</label>
-                                <input type="text" name="position" class="form-control" id="name"
-                                    placeholder="Enter name" required />
-                                <div class="invalid-feedback" id="nameError">Please enter position.</div>
+                                <label for="position" class="form-label">Position</label>
+                                <input type="text" name="position" class="form-control" id="position"
+                                    placeholder="Enter position" required />
+                                <div class="invalid-feedback" id="positionError">Please enter position.</div>
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="text" name="phone" class="form-control" id="phone"
+                                    placeholder="Enter phone number" required value="{{ old('phone') }}" />
+                                <div class="invalid-feedback" id="phoneError">Please enter Phone number.</div>
                             </div>
 
 
@@ -55,6 +62,16 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- show error --}}
+                        @if ($errors->any())
+                            <div class="alert alert-danger" id="formError">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <!-- Submit Button -->
                         <div class="card-footer">
@@ -72,31 +89,39 @@
     <!-- Client-Side Validation + Image Preview Script -->
     <script>
         document.getElementById('nameError').style.display = 'none';
-        document.getElementById('textError').style.display = 'none';
+        document.getElementById('positionError').style.display = 'none';
+        document.getElementById('phoneError').style.display = 'none';
+
         document.getElementById('imageError').style.display = 'none';
-        document.getElementById('newsForm').addEventListener('submit', function(e) {
+        document.getElementById('form').addEventListener('submit', function(e) {
             let isValid = true;
 
-            // Reset errors
 
 
-            const titleInput = document.getElementById('title');
-            const descriptionTextarea = document.getElementById('editor');
+            const nameInput = document.getElementById('name').value.trim();
+            const positionInput = document.getElementById('position').value.trim();
+            const phoneInput = document.getElementById('phone').value.trim();
+
             const imageInput = document.getElementById('inputGroupFile02');
 
-            const title = titleInput.value.trim();
-            const description = tinymce.get(descriptionTextarea.id).getContent().trim();
 
-            // Validate Title
-            if (!title) {
+
+
+            // Validate name
+            if (!nameInput) {
                 document.getElementById('nameError').style.display = 'block';
-                titleInput.focus();
+                nameInput.focus();
                 isValid = false;
             }
 
             // Validate Description (TinyMCE)
-            if (!description) {
-                document.getElementById('textError').style.display = 'block';
+            if (!positionInput) {
+                document.getElementById('positionError').style.display = 'block';
+                isValid = false;
+            }
+            // Validate Description (TinyMCE)
+            if (!phoneInput) {
+                document.getElementById('phoneError').style.display = 'block';
                 isValid = false;
             }
 

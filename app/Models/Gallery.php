@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stuff extends Model
+class Gallery extends Model
 {
     protected $fillable = [
-        'name',
-        'position',
-        'phone',
-        'image'
+        'type',
+        'file_path'
     ];
 }

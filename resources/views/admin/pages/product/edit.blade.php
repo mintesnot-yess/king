@@ -16,7 +16,7 @@
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('product.update', $product->id) }}" method="POST"
+                    <form id="form" action="{{ route('product.update', $product->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -123,7 +123,7 @@
         document.getElementById('textError').style.display = 'none';
         document.getElementById('imagesError').style.display = 'none';
         document.getElementById('categoryError').style.display = 'none';
-        document.getElementById('newsForm').addEventListener('submit', function(e) {
+        document.getElementById('form').addEventListener('submit', function(e) {
             let isValid = true;
 
             // Reset errors

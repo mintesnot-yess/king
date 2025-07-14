@@ -66,11 +66,18 @@
                 <li class="nav-item">
                     <a href="{{ route('stuff.index') }}"
                         class="nav-link {{ request()->is('admin/stuff') ? 'active' : '' }}">
-                        <i class="nav-icon bi bi-newspaper"></i>
+                        <i class="nav-icon bi bi-people"></i>
                         <p>Stuff</p>
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{ route('gallery.index') }}"
+                        class="nav-link {{ request()->is('admin/gallery') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-images"></i>
+                        <p>Galley</p>
+                    </a>
+                </li>
 
                 @php
                     $isProductActive = request()->routeIs('product.*') || request()->routeIs('category.*');

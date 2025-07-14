@@ -17,7 +17,7 @@
                     </div>
 
                     <!-- Add id for JS validation -->
-                    <form id="newsForm" action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="form" action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="card-body row">
@@ -89,7 +89,7 @@
         document.getElementById('nameError').style.display = 'none';
         document.getElementById('textError').style.display = 'none';
         document.getElementById('imageError').style.display = 'none';
-        document.getElementById('newsForm').addEventListener('submit', function(e) {
+        document.getElementById('form').addEventListener('submit', function(e) {
             let isValid = true;
 
             // Reset errors

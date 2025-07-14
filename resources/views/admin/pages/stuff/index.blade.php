@@ -31,9 +31,12 @@
                                     <thead>
                                         <tr>
                                             <th style="width: 10px">#</th>
-                                            <th>User name</th>
-                                            <th>phone</th>
-                                            <th>heir date</th>
+                                            <th>User Name</th>
+                                            <th>Position</th>
+                                            <th>Phone</th>
+                                            <th>image</th>
+
+
 
                                             <th style="width: 120px">Actions</th>
                                         </tr>
@@ -43,14 +46,20 @@
                                             <tr class="align-middle">
                                                 <td>{{ $index + 1 }}.</td>
                                                 <td>
-                                                    <a
-                                                        href="{{ route('testimonial.show', $item->id) }}">{{ $item->name }}</a>
+                                                    <a href="{{ route('stuff.show', $item->id) }}">{{ $item->name }}</a>
                                                 </td>
                                                 <td>
                                                     <p
                                                         style="width: 250px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
 
-                                                        {{ Str::limit(strip_tags($item->text), 50) }}
+                                                        {{ $item->position }}
+                                                    </p>
+
+                                                </td>
+                                                <td>
+                                                    <p style="">
+
+                                                        {{ $item->phone }}
                                                     </p>
                                                 </td>
                                                 <td>

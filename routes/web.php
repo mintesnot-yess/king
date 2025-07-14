@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StuffController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes (No Auth Needed)
@@ -25,6 +27,10 @@ Route::get('/product', [FrontendController::class, 'product'])->name('product');
 Route::get('/product/{id}', [FrontendController::class, 'productDetails'])->name('product.detail');
 Route::get('/service', [FrontendController::class, 'service'])->name('service');
 Route::get('/service/{id}', [FrontendController::class, 'serviceDetails'])->name('service.detail');
+Route::get('/gallery-images', [FrontendController::class, 'images'])->name('images');
+Route::get('/gallery-videos', [FrontendController::class, 'videos'])->name('videos');
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+
 
 
 // Auth Routes (Login/Logout)
@@ -59,4 +65,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('stuff', StuffController::class);
+    Route::resource('gallery', GalleryController::class);
 });
