@@ -18,7 +18,7 @@ class TestimonialController extends Controller
         $testimonialsList = Testimonial::latest()->paginate(10);
 
         return view(
-            'admin.pages.testimonial.index',
+            'admin.pages.client.testimonial.index',
             [
                 'testimonialsList' => $testimonialsList,
                 'breadcrumbs' => [
@@ -32,14 +32,14 @@ class TestimonialController extends Controller
 
     public function create()
     {
-        return view('admin.pages.testimonial.create', [
+        return view('admin.pages.client.testimonial.create', [
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
                 ['name' => 'Testimonial', 'url' => route('testimonial.index')],
                 ['name' => 'Create', 'url' => null]
             ],
             'currentPage' => 'Create Testimonial',
-        ], );
+        ],);
     }
 
     /**
@@ -79,7 +79,7 @@ class TestimonialController extends Controller
      */
     public function show(Testimonial $testimonial)
     {
-        return view('admin.pages.testimonial.show', [
+        return view('admin.pages.client.testimonial.show', [
             'testimonial' => $testimonial,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
@@ -87,7 +87,7 @@ class TestimonialController extends Controller
                 ['name' => 'View', 'url' => null]
             ],
             'currentPage' => 'View Testimonial',
-        ], );
+        ],);
     }
 
     /**
@@ -95,7 +95,7 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial)
     {
-        return view('admin.pages.testimonial.edit', [
+        return view('admin.pages.client.testimonial.edit', [
             'testimonial' => $testimonial,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
@@ -103,7 +103,7 @@ class TestimonialController extends Controller
                 ['name' => 'Edit', 'url' => null]
             ],
             'currentPage' => 'Edit Testimonial',
-        ], );
+        ],);
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title', 'Create Testimonial | Kings Admin')
+@section('title', 'Create Hero Slider | Kings Admin')
 @section('content')
 
     <main class="app-main">
@@ -13,7 +13,7 @@
 
                 <div class="card card-primary card-outline mb-4">
                     <div class="card-header">
-                        <h3 class="card-title">Create Testimonial</h3>
+                        <h3 class="card-title">Create Hero Slider</h3>
                     </div>
 
                     <!-- Add id for JS validation -->

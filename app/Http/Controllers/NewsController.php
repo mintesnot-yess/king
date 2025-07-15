@@ -26,7 +26,7 @@ class NewsController extends Controller
                     ['name' => 'Home', 'url' => '/admin'],
                     ['name' => 'News', 'url' => null],
                 ],
-                'currentPage' => 'Create News',
+                'currentPage' => 'News',
             ],
         );
     }
@@ -43,7 +43,7 @@ class NewsController extends Controller
                 ['name' => 'Create', 'url' => null]
             ],
             'currentPage' => 'Create News',
-        ], );
+        ],);
     }
 
     /**
@@ -76,7 +76,6 @@ class NewsController extends Controller
         // Redirect to news index with success message
         return redirect()->route('news.index')
             ->with('success', 'News created successfully!');
-
     }
 
     /**
@@ -92,7 +91,7 @@ class NewsController extends Controller
                 ['name' => 'View', 'url' => null]
             ],
             'currentPage' => 'View News',
-        ], );
+        ],);
     }
 
     /**
@@ -108,7 +107,7 @@ class NewsController extends Controller
                 ['name' => 'Edit', 'url' => null]
             ],
             'currentPage' => 'Edit News',
-        ], );
+        ],);
     }
 
     /**

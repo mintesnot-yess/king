@@ -54,16 +54,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Super Admin-Only Routes (Require 'super_admin' role)
     Route::middleware('can:super_admin')->group(function () {
         Route::resource('users', UserController::class);
-    });    // Super Admin-Only Routes (Require 'super_admin' role)
+    });
 
-    // Regular Admin Routes (No special role needed)
     Route::resource('news', NewsController::class);
-    Route::resource('testimonial', TestimonialController::class);
     Route::resource('slider', SliderController::class);
-    Route::resource('brand', BrandController::class);
-    Route::resource('product', ProductController::class);
-    Route::resource('category', CategoryController::class);
     Route::resource('service', ServiceController::class);
     Route::resource('stuff', StuffController::class);
     Route::resource('gallery', GalleryController::class);
+    // clients
+    Route::resource('testimonial', TestimonialController::class);
+    Route::resource('brand', BrandController::class);
+    //---------------------------
+
+    // products
+    Route::resource('product', ProductController::class);
+    Route::resource('category', CategoryController::class);
+    //------------------------
+
 });

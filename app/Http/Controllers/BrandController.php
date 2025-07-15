@@ -16,7 +16,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::all();
-        return view('admin.pages.brands.index', [
+        return view('admin.pages.client.logo.index', [
             'brands' => $brands,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
@@ -31,7 +31,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.brands.create', [
+        return view('admin.pages.client.logo.create', [
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
                 ['name' => 'Brands', 'url' => route('brand.index')],
@@ -75,7 +75,7 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return view('admin.pages.brands.show', [
+        return view('admin.pages.client.logo.show', [
             'brand' => $brand,
             'breadcrumbs' => [
                 ['name' => 'Home', 'url' => '/admin'],
